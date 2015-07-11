@@ -1,4 +1,4 @@
-react-hot-boilerplate
+react-imgur
 =====================
 
 The minimal dev environment to enable live-editing React components.

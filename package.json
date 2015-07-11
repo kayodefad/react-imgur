@@ -1,7 +1,8 @@
 {
-  "name": "react-hot-boilerplate",
+  "name": "react-imgur",
   "version": "1.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
+  "private": true,
   "scripts": {
     "start": "webpack-dev-server",
     "lint": "eslint src",
