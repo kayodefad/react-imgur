@@ -10,20 +10,10 @@ export default class App extends Component {
     this.state = {images: [], page: 0};
   }
 
-  loadImages(page) {
+  loadImages(page = 0) {
     searchGallery(undefined, undefined, page).then((result) => {
-      this.setState({images: result.data});
+      this.setState({images: result.data, page: page});
     });
-  }
-
-  prevPage() {
-    this.state.page--;
-    this.loadImages(this.state.page);
-  }
-
-  nextPage() {
-    this.state.page++;
-    this.loadImages(this.state.page);
   }
 
   componentDidMount() {
@@ -31,28 +21,38 @@ export default class App extends Component {
   }
 
   render() {
-    var containerStyle = {
-      paddingTop: '70px'
-    };
 
     return (
       <div>
-        <Navbar brand='React Imgur viewer' fixedTop={true}>
+        <Navbar
+          brand='React Imgur viewer'
+          fixedTop={true}>
+
           <Nav right>
-            <NavItem onClick={this.prevPage.bind(this)} disabled={this.state.page <= 0}>
+            <NavItem
+              onClick={() => this.loadImages(this.state.page - 1)}
+              disabled={this.state.page <= 0}>
               <i className='glyphicon glyphicon-arrow-left'></i> Previous page
             </NavItem>
-            <NavItem onClick={this.nextPage.bind(this)}>
+            <NavItem onClick={() => this.loadImages(this.state.page + 1)}>
               Next page <i className='glyphicon glyphicon-arrow-right'></i>
             </NavItem>
           </Nav>
+
         </Navbar>
-        <div className='container' style={containerStyle}>
+
+        <div
+          className='container'
+          style={{paddingTop: '70px'}}>
+
           {this.state.images.map(function(image) {
             return (
-              <ImgurImage image={image} key={image.id}/>
+              <ImgurImage
+                image={image}
+                key={image.id} />
             );
           })}
+
         </div>
       </div>
     );

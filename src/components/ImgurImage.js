@@ -34,7 +34,9 @@ export default class ImgurImage extends Component {
         <div className='col-md-4'>
           Posted at {this.formatDate(new Date(this.props.image.datetime * 1000))}
           &nbsp;by&nbsp;
-          <a href={'https://imgur.com/user/' + this.props.image.account_url} target='_blank'>
+          <a
+            href={'https://imgur.com/user/' + this.props.image.account_url}
+            target='_blank'>
             {this.props.image.account_url}
           </a>
         </div>
@@ -63,9 +65,17 @@ export default class ImgurImage extends Component {
 
     return (
       <div>
-        <Panel header={this.props.image.title} footer={footer} bsStyle='primary'>
+        <Panel
+          header={this.props.image.title}
+          footer={footer}
+          bsStyle='primary'>
+
           <p>{this.props.image.description}</p>
-          <a href={this.props.image.link} target='_blank'>
+
+          <a
+            href={this.props.image.link}
+            target='_blank'>
+
             <img
               className='img-responsive center-block img-thumbnail'
               src={this.getImage()} />
