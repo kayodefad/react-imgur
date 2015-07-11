@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import ImgurImage from './ImgurImage';
-import { searchGallery } from './services/imgur';
+import { searchGallery } from './../services/imgur';
 
 export default class App extends Component {
 
