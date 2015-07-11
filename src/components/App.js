@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import Image from './Image';
+import ImgurImage from './ImgurImage';
 import { searchGallery } from './services/imgur';
 
 export default class App extends Component {
@@ -50,7 +50,7 @@ export default class App extends Component {
         <div className='container' style={containerStyle}>
           {this.state.images.map(function(image) {
             return (
-              <Image image={image} key={image.id}/>
+              <ImgurImage image={image} key={image.id}/>
             );
           })}
         </div>
