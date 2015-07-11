@@ -5,7 +5,7 @@ const apiBase = 'https://api.imgur.com/3';
 const request = fetchival(apiBase, {
   mode: 'cors',
   headers: {
-    Authorization: 'Client-ID ' +CLIENT_ID
+    Authorization: 'Client-ID ' + CLIENT_ID
   }
 });
 
