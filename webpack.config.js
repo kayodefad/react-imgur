@@ -26,5 +26,11 @@ module.exports = {
       loaders: ['react-hot', 'babel'],
       include: path.join(__dirname, 'src')
     }]
+  },
+  devServer: {
+    port: 3000,
+    publicPath: '/static/',
+    hot: true,
+    historyApiFallback: true
   }
 };
