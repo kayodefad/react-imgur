@@ -40,8 +40,8 @@ export default class ImgurImage extends Component {
 
     return (
       <div>
-        <p>{this.props.image.description}</p>
         <Panel header={this.props.image.title} footer={footer} bsStyle='primary'>
+          <p>{this.props.image.description}</p>
           <a href={this.props.image.link} target='_blank'>
             <img
               className='img-responsive center-block img-thumbnail'
