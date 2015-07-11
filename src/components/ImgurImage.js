@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
-import moment from 'moment';
 
 export default class ImgurImage extends Component {
+
+  formatDate(date) {
+    const monthNames = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dev'
+    ];
+    return date.getHours() + ':' + date.getMinutes() + ', ' + monthNames[date.getMonth() - 1] + ' ' + date.getDay();
+  }
 
   render() {
 
     const footer = (
       <div className='row'>
         <div className='col-md-4'>
-          Posted at {moment(new Date(this.props.image.datetime * 1000)).format('HH:mm, MMM Do')}
+          Posted at {this.formatDate(new Date(this.props.image.datetime * 1000))}
           &nbsp;by&nbsp;
           <a href={'https://imgur.com/user/' + this.props.image.account_url} target='_blank'>
             {this.props.image.account_url}

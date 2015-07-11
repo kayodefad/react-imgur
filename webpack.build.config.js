@@ -11,7 +11,6 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false
