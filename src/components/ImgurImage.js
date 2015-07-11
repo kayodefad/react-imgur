@@ -20,6 +20,13 @@ export default class ImgurImage extends Component {
     return date.getHours() + ':' + date.getMinutes() + ', ' + monthNames[date.getMonth() - 1] + ' ' + date.getDay();
   }
 
+  getImage() {
+    if (this.props.image.cover) {
+      return '//imgur.com/' + this.props.image.cover + '.jpg';
+    }
+    return this.props.image.link.replace('http://', '//');
+  }
+
   render() {
 
     const footer = (
@@ -61,7 +68,7 @@ export default class ImgurImage extends Component {
           <a href={this.props.image.link} target='_blank'>
             <img
               className='img-responsive center-block img-thumbnail'
-              src={this.props.image.cover ? 'https://imgur.com/' + this.props.image.cover + '.jpg' : this.props.image.link} />
+              src={this.getImage()} />
           </a>
         </Panel>
       </div>
