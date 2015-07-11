@@ -37,7 +37,7 @@ export default class App extends Component {
 
     return (
       <div>
-        <Navbar brand='React-Bootstrap' fixedTop={true}>
+        <Navbar brand='React Imgur viewer' fixedTop={true}>
           <Nav right>
             <NavItem onClick={this.prevPage.bind(this)} disabled={this.state.page <= 0}>
               <i className='glyphicon glyphicon-arrow-left'></i> Previous page
