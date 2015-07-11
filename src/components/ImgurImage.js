@@ -22,9 +22,9 @@ export default class ImgurImage extends Component {
 
   getImage() {
     if (this.props.image.cover) {
-      return 'https://imgur.com/' + this.props.image.cover + '.jpg';
+      return '//imgur.com/' + this.props.image.cover + '.jpg';
     }
-    return this.props.image.link.replace('http://', 'https://');
+    return this.props.image.link.replace('http://', '//');
   }
 
   render() {
