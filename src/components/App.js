@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import ImgurImage from './ImgurImage';
+import Header from './Header';
+import ImgurImageList from './ImgurImageList';
 import { searchGallery } from './../services/imgur';
 
 export default class App extends Component {
@@ -24,36 +24,8 @@ export default class App extends Component {
 
     return (
       <div>
-        <Navbar
-          brand='React Imgur viewer'
-          fixedTop={true}>
-
-          <Nav right>
-            <NavItem
-              onClick={() => this.loadImages(this.state.page - 1)}
-              disabled={this.state.page <= 0}>
-              <i className='glyphicon glyphicon-arrow-left'></i> Previous page
-            </NavItem>
-            <NavItem onClick={() => this.loadImages(this.state.page + 1)}>
-              Next page <i className='glyphicon glyphicon-arrow-right'></i>
-            </NavItem>
-          </Nav>
-
-        </Navbar>
-
-        <div
-          className='container'
-          style={{paddingTop: '70px'}}>
-
-          {this.state.images.map(function(image) {
-            return (
-              <ImgurImage
-                image={image}
-                key={image.id} />
-            );
-          })}
-
-        </div>
+        <Header page={this.state.page} loadImages={this.loadImages.bind(this)} />
+        <ImgurImageList images={this.state.images} />
       </div>
     );
   }
