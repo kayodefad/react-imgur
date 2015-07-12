@@ -17,7 +17,7 @@ export default class ImgurImage extends Component {
       'Nov',
       'Dev'
     ];
-    return date.getHours() + ':' + date.getMinutes() + ', ' + monthNames[date.getMonth() - 1] + ' ' + date.getDay();
+    return date.getHours() + ':' + date.getMinutes() + ', ' + monthNames[date.getMonth() - 1] + ' ' + date.getDate();
   }
 
   getImage() {
@@ -39,23 +39,21 @@ export default class ImgurImage extends Component {
             target='_blank'>
             {this.props.image.account_url}
           </a>
+          {!this.props.image.account_url ? 'Unknown user' : ''}
         </div>
         <div className='col-md-8'>
           <div className='row'>
-            <div className='col-md-2 col-md-offset-2'>
+            <div className='col-md-3'>
               <i className='glyphicon glyphicon-eye-open'></i> {this.props.image.views}
             </div>
-            <div className='col-md-2'>
+            <div className='col-md-3'>
               <i className='glyphicon glyphicon-comment'></i> {this.props.image.comment_count}
             </div>
-            <div className='col-md-2'>
+            <div className='col-md-3'>
               <i className='glyphicon glyphicon-thumbs-up'></i> {this.props.image.ups}
             </div>
-            <div className='col-md-2'>
+            <div className='col-md-3'>
               <i className='glyphicon glyphicon-thumbs-down'></i> {this.props.image.downs}
-            </div>
-            <div className='col-md-2'>
-              <i className='glyphicon glyphicon-list'></i> {this.props.image.section}
             </div>
           </div>
         </div>
