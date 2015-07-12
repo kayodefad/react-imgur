@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import ImgurImage from './ImgurImage';
+import Loader from 'react-loader';
+import Header from './Header';
+import ImgurImageList from './ImgurImageList';
 import { searchGallery } from './../services/imgur';
 
 export default class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {images: [], page: 0};
+    this.state = {images: [], page: 0, loaded: false};
   }
 
-  loadImages(page) {
+  loadImages(page = 0) {
+    this.setState({loaded: false});
     searchGallery(undefined, undefined, page).then((result) => {
-      this.setState({images: result.data});
+      this.setState({images: result.data, page: page, loaded: true});
+    }).catch(() => {
+      this.setState({loaded: true});
     });
-  }
-
-  prevPage() {
-    this.state.page--;
-    this.loadImages(this.state.page);
-  }
-
-  nextPage() {
-    this.state.page++;
-    this.loadImages(this.state.page);
   }
 
   componentDidMount() {
@@ -31,30 +25,12 @@ export default class App extends Component {
   }
 
   render() {
-    var containerStyle = {
-      paddingTop: '70px'
-    };
 
     return (
-      <div>
-        <Navbar brand='React Imgur viewer' fixedTop={true}>
-          <Nav right>
-            <NavItem onClick={this.prevPage.bind(this)} disabled={this.state.page <= 0}>
-              <i className='glyphicon glyphicon-arrow-left'></i> Previous page
-            </NavItem>
-            <NavItem onClick={this.nextPage.bind(this)}>
-              Next page <i className='glyphicon glyphicon-arrow-right'></i>
-            </NavItem>
-          </Nav>
-        </Navbar>
-        <div className='container' style={containerStyle}>
-          {this.state.images.map(function(image) {
-            return (
-              <ImgurImage image={image} key={image.id}/>
-            );
-          })}
-        </div>
-      </div>
+      <Loader loaded={this.state.loaded}>
+        <Header page={this.state.page} loadImages={this.loadImages.bind(this)} />
+        <ImgurImageList images={this.state.images} />
+      </Loader>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from 'react-bootstrap';
+import { Panel, Glyphicon, Row, Col } from 'react-bootstrap';
 
 export default class ImgurImage extends Component {
 
@@ -17,7 +17,7 @@ export default class ImgurImage extends Component {
       'Nov',
       'Dev'
     ];
-    return date.getHours() + ':' + date.getMinutes() + ', ' + monthNames[date.getMonth() - 1] + ' ' + date.getDay();
+    return date.getHours() + ':' + date.getMinutes() + ', ' + monthNames[date.getMonth() - 1] + ' ' + date.getDate();
   }
 
   getImage() {
@@ -30,48 +30,54 @@ export default class ImgurImage extends Component {
   render() {
 
     const footer = (
-      <div className='row'>
-        <div className='col-md-4'>
+      <Row>
+        <Col md={4}>
           Posted at {this.formatDate(new Date(this.props.image.datetime * 1000))}
           &nbsp;by&nbsp;
-          <a href={'https://imgur.com/user/' + this.props.image.account_url} target='_blank'>
+          <a
+            href={'https://imgur.com/user/' + this.props.image.account_url}
+            target='_blank'>
             {this.props.image.account_url}
           </a>
-        </div>
-        <div className='col-md-8'>
-          <div className='row'>
-            <div className='col-md-2 col-md-offset-2'>
-              <i className='glyphicon glyphicon-eye-open'></i> {this.props.image.views}
-            </div>
-            <div className='col-md-2'>
-              <i className='glyphicon glyphicon-comment'></i> {this.props.image.comment_count}
-            </div>
-            <div className='col-md-2'>
-              <i className='glyphicon glyphicon-thumbs-up'></i> {this.props.image.ups}
-            </div>
-            <div className='col-md-2'>
-              <i className='glyphicon glyphicon-thumbs-down'></i> {this.props.image.downs}
-            </div>
-            <div className='col-md-2'>
-              <i className='glyphicon glyphicon-list'></i> {this.props.image.section}
-            </div>
-          </div>
-        </div>
+          {!this.props.image.account_url ? 'Unknown user' : ''}
+        </Col>
+        <Col md={8}>
+          <Row>
+            <Col md={3}>
+              <Glyphicon glyph='eye-open' /> {this.props.image.views}
+            </Col>
+            <Col md={3}>
+              <Glyphicon glyph='comment' /> {this.props.image.comment_count}
+            </Col>
+            <Col md={3}>
+              <Glyphicon glyph='thumbs-up' /> {this.props.image.ups}
+            </Col>
+            <Col md={3}>
+              <Glyphicon glyph='thumbs-down' /> {this.props.image.downs}
+            </Col>
+          </Row>
+        </Col>
 
-      </div>
+      </Row>
     );
 
     return (
-      <div>
-        <Panel header={this.props.image.title} footer={footer} bsStyle='primary'>
-          <p>{this.props.image.description}</p>
-          <a href={this.props.image.link} target='_blank'>
-            <img
-              className='img-responsive center-block img-thumbnail'
-              src={this.getImage()} />
-          </a>
-        </Panel>
-      </div>
+      <Panel
+        header={this.props.image.title}
+        footer={footer}
+        bsStyle='primary'>
+
+        <p>{this.props.image.description}</p>
+
+        <a
+          href={this.props.image.link}
+          target='_blank'>
+
+          <img
+            className='img-responsive center-block img-thumbnail'
+            src={this.getImage()} />
+        </a>
+      </Panel>
     );
   }
 
