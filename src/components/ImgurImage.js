@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from 'react-bootstrap';
+import { Panel, Glyphicon } from 'react-bootstrap';
 
 export default class ImgurImage extends Component {
 
@@ -44,16 +44,16 @@ export default class ImgurImage extends Component {
         <div className='col-md-8'>
           <div className='row'>
             <div className='col-md-3'>
-              <i className='glyphicon glyphicon-eye-open'></i> {this.props.image.views}
+              <Glyphicon glyph='eye-open' /> {this.props.image.views}
             </div>
             <div className='col-md-3'>
-              <i className='glyphicon glyphicon-comment'></i> {this.props.image.comment_count}
+              <Glyphicon glyph='comment' /> {this.props.image.comment_count}
             </div>
             <div className='col-md-3'>
-              <i className='glyphicon glyphicon-thumbs-up'></i> {this.props.image.ups}
+              <Glyphicon glyph='thumbs-up' /> {this.props.image.ups}
             </div>
             <div className='col-md-3'>
-              <i className='glyphicon glyphicon-thumbs-down'></i> {this.props.image.downs}
+              <Glyphicon glyph='thumbs-down' /> {this.props.image.downs}
             </div>
           </div>
         </div>

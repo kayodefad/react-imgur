@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Glyphicon } from 'react-bootstrap';
 
 export default class Header extends Component {
 
@@ -15,10 +15,10 @@ export default class Header extends Component {
           <NavItem
             onClick={() => this.props.loadImages(this.props.page - 1)}
             disabled={this.props.page <= 0}>
-            <i className='glyphicon glyphicon-arrow-left'></i> Previous page
+            <Glyphicon glyph='arrow-left' /> Previous page
           </NavItem>
           <NavItem onClick={() => this.props.loadImages(this.props.page + 1)}>
-            Next page <i className='glyphicon glyphicon-arrow-right'></i>
+            Next page <Glyphicon glyph='arrow-right' />
           </NavItem>
         </Nav>
 
