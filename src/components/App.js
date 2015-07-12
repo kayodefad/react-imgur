@@ -12,9 +12,7 @@ export default class App extends Component {
 
   loadImages(page = 0) {
     searchGallery(undefined, undefined, page).then((result) => {
-      if (this.isMounted()) {
-        this.setState({images: result.data, page: page});
-      }
+      this.setState({images: result.data, page: page});
     });
   }
 
