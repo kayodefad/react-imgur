@@ -8,9 +8,10 @@ export default class Header extends Component {
     return (
       <Navbar
         brand='React Imgur viewer'
-        fixedTop={true}>
+        fixedTop={true}
+        toggleNavKey={0}>
 
-        <Nav right>
+        <Nav right eventKey={0}>
           <NavItem
             onClick={() => this.props.loadImages(this.props.page - 1)}
             disabled={this.props.page <= 0}>
