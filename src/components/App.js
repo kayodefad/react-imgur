@@ -1,3 +1,4 @@
+import 'babel-core/register';
 import React, { Component } from 'react';
 import Loader from 'react-loader';
 import Header from './Header';
@@ -11,13 +12,16 @@ export default class App extends Component {
     this.state = {images: [], page: 0, loaded: false};
   }
 
-  loadImages(page = 0) {
+  async loadImages(page = 0) {
     this.setState({loaded: false});
-    searchGallery(undefined, undefined, page).then((result) => {
+
+    try {
+      let result = await searchGallery(undefined, undefined, page);
       this.setState({images: result.data, page: page, loaded: true});
-    }).catch(() => {
+    } catch (e) {
       this.setState({loaded: true});
-    });
+    }
+
   }
 
   componentDidMount() {
